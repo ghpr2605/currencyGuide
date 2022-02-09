@@ -4,30 +4,33 @@ const TableHeader = () => {
   return (
     <thead>
       <tr>
-        <th>Country</th>
-        <th>Currency</th>
+        <th>Currency Name</th>
+        <th>Currency Abbrevation</th>
       </tr>
     </thead>
   );
 };
 
-const TableBody = () => {
-  return (
-    <tbody>
+const TableBody = (props) => {
+  const { displayData } = props;
+  const data = displayData.map((row) => {
+    return (
       <tr>
-        <td>India</td>
-        <td>INR</td>
+        <td>{row.name}</td>
+        <td>{row.id}</td>
       </tr>
-    </tbody>
-  );
+    );
+  });
+  return <tbody>{data}</tbody>;
 };
 
 class Table extends Component {
   render() {
+    const { displayData } = this.props;
     return (
       <table>
         <TableHeader></TableHeader>
-        <TableBody></TableBody>
+        <TableBody displayData={displayData}></TableBody>
       </table>
     );
   }
